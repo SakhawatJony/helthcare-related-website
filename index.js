@@ -29,6 +29,15 @@ app.get('/packages',async(req,res)=>{
     res.send(packages);
 
 })
+   // POST API
+   app.post('/packages', async (req, res) => {
+    const package = req.body;
+    console.log('hit the post api', package);
+
+    const result = await packageCollection.insertOne(package);
+    console.log(result);
+    res.json(result)
+});
 
    // Add Orders API
    app.post('/orders', async (req, res) => {
@@ -43,6 +52,7 @@ app.get('/orders',async(req,res)=>{
   res.send(orders);
 
 })
+
 
         // DELETE API
         app.delete('/orders/:id', async (req, res) => {
